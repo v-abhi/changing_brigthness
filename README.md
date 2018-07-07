@@ -1,4 +1,4 @@
-# changing_brigthness
+# changing_brigthness_smoothly
 this will change brightness level of screen from "brightness level A" to "brightness level B" automatically and smoothly.
 
 this will let 'the brightness of screen' changes over the time constantly within some specified ranges.
