@@ -23,4 +23,5 @@ Idea
   To execute  
     
   cd ~/Downloads/brightness
+  
   ./brightness.sh
