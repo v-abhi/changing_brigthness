@@ -12,3 +12,15 @@ Idea
   
   This can be also thought as an exercise of eyes to maintain its flexibility.
   we will not have to stare on same brightness level without changing b-level manually.
+  
+  
+  For more details 
+    read readme.md file in brightness.tar.xz
+    
+    
+  download and extract the file
+    
+  To execute  
+    
+  cd ~/Downloads/brightness
+  ./brightness.sh
