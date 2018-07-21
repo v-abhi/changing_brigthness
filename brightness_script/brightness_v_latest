@@ -1,0 +1,107 @@
+
+
+
+
+lower_limit=`cat lower_level_brightness`
+upper_limit=`cat upper_level_brightness`
+
+
+present_brightness_level=`cat /sys/class/backlight/intel_backlight/actual_brightness`
+
+
+s=$1
+if [ "$#" -lt 1 ]
+	then
+		t=60
+else
+		if [ $s == "-r" -o $s == "--refresh" ]
+			then
+				sudo chown root:root /sys/class/backlight/intel_backlight/brightness
+				exit
+				echo "jkhgkdg"
+		else
+				
+				if [ $s == "-vf" -o $s == "--very_fast" ]	# instant
+					then
+						t=0
+				elif [ $s == "-f" -o $s == "--fast" ]		# 7.3 minutes
+					then
+						t=2
+				elif [ $s == "-mf" -o $s == "--medium__fast" -o $s == "--med_f" ]	# 18.3 minutes
+					then
+						t=5
+				elif [ $s == "-m" -o $s == "--medium" -o $s == "--med" ]		# 36.6 minutes
+					then
+						t=10
+				elif [ $s == "-s" -o $s == "--slow" ]		# 1 hour and 13.2 minutes
+					then
+						t=20
+				elif [ $s == "-vs" -o $s == "--very_slow" ]		# 2 hour and 26.2 minutes
+					then
+						t=40
+				elif [ $s == "-vvs" -o $s == "--very_very_slow" ]		# 4 hour and 55 minutes
+					then
+						t=80
+				else 
+						echo "no such arguement"
+						exit
+
+				fi
+		fi
+				
+fi
+
+
+
+
+
+
+user_name=`whoami`
+
+sudo chown $user_name:root /sys/class/backlight/intel_backlight/brightness
+
+
+
+l=$(($present_brightness_level-55))
+u=$(($present_brightness_level+55))
+
+
+
+
+
+
+for((i=$present_brightness_level;i>$lower_limit && i>$l;i--))
+	do
+		echo $i > /sys/class/backlight/intel_backlight/brightness
+		sleep $t
+	done
+	
+while true
+	do	
+		for((i=$i;i<$upper_limit && i<$u;i++))
+			do
+				echo $i > /sys/class/backlight/intel_backlight/brightness
+				sleep $t
+			done
+			
+		for((i=$i;i>$lower_limit && i>$l;i--))
+			do
+				echo $i > /sys/class/backlight/intel_backlight/brightness
+				sleep $t
+			done		
+	done
+	
+	
+	
+	
+
+
+	
+sudo chown root:root /sys/class/backlight/intel_backlight/brightness
+
+
+
+
+
+
+
